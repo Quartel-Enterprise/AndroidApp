@@ -75,7 +75,7 @@ dependencies {
     implementation(project(":login"))
 }
 
-// Allow references to generated code
+// Allow references to generate code
 kapt {
     correctErrorTypes = true
 }

@@ -1,6 +1,10 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("com.google.dagger.hilt.android")
+    kotlin("kapt")
 }
 
 android {
@@ -47,4 +51,28 @@ dependencies {
     implementation(libs.material3)
     debugImplementation(libs.uiTooling)
     debugImplementation(libs.uiTestManifest)
+
+    // Navigation
+    implementation("androidx.navigation:navigation-compose:2.7.6")
+
+    // Hilt
+    implementation(libs.daggerHilt)
+    implementation(libs.daggerHiltAndCompose)
+    kapt(libs.daggerHiltCompiler)
+
+    // Firebase
+    implementation(platform(libs.firebaseBom))
+    implementation(libs.firebaseAnalytics)
+    implementation(libs.firebaseServices)
+    implementation(libs.firebaseAuth)
 }
+
+// Allow references to generate code
+kapt {
+    correctErrorTypes = true
+}
+
+hilt {
+    enableAggregatingTask = true
+}
+
